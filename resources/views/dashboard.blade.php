@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Tableau de Bord</title>
+
     <style>
         .widget {
             border: 1px solid #ccc;
@@ -16,28 +17,27 @@
             font-size: 12px;
             color: #fff;
         }
-        /* Exemples de style pour quelques catégories */
         .badge.Aventure { background-color: #e3342f; }
         .badge.Poésie { background-color: #38c172; }
-        /* Ajoutez d'autres styles pour d'autres catégories si nécessaire */
     </style>
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
 </head>
 <body>
-    <h1>Tableau de Bord</h1>
+    <h1 class="m-4 text-4xl font-extrabold ">Tableau de Bord</h1>
 
-    <!-- Widget 1 : Nombre total de livres -->
-    <div class="widget">
-        <h2>Total des Livres</h2>
+    
+    <div class=" m-4 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Total des Livres</h5>
         @if($errorMessage)
             <div style="color: red;">{{ $errorMessage }}</div>
         @else
-            <p style="font-size: 24px;">{{ $totalLivres }}</p>
+            <p class="text-white">{{ $totalLivres }}</p>
         @endif
     </div>
 
-    <!-- Widget 2 : Liste des 5 derniers livres ajoutés -->
-    <div class="widget">
-        <h2>Les 5 Derniers Livres Ajoutés</h2>
+    <div class=" m-4 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+        <h2 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Les 5 Derniers Livres Ajoutés</h2>
         @if($errorMessage)
             <div style="color: red;">{{ $errorMessage }}</div>
         @elseif($latestLivres->isEmpty())
@@ -46,9 +46,9 @@
             <ul>
                 @foreach($latestLivres as $livre)
                     <li>
-                        <strong>{{ $livre->titre }}</strong> par {{ $livre->auteur }}
-                        <!-- Badge visuel selon la catégorie -->
-                        <span class="badge {{ $livre->categorie }}">
+                        <strong class="text-white">{{ $livre->titre }}</strong class="text-white"> par {{ $livre->auteur }}
+                        
+                        <span  class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-green-400 border border-green-400 {{ $livre->categorie }}">
                             {{ $livre->categorie }}
                         </span>
                     </li>

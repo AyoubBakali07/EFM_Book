@@ -12,13 +12,10 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        // Widget 1 : Nombre total de livres
         $totalLivres = Livre::count();
 
-        // Widget 2 : Les 5 derniers livres ajoutés (triés par date de création décroissante)
         $latestLivres = Livre::orderBy('created_at', 'desc')->take(5)->get();
 
-        // Gestion d'erreur : s'il n'y a aucun livre, définir un message d'alerte
         $errorMessage = null;
         if ($totalLivres === 0) {
             $errorMessage = "Aucun livre n'a été trouvé.";
